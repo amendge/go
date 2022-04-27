@@ -44,6 +44,20 @@ func GetSinceWeek() int64{
    return t.Unix()/int64(secondsPerWeek)
 }
 
+func GetOncallSinceWeek() int64 {
+
+	year := time.Now().Year()
+	month := time.Now().Month()
+	day := time.Now().Day()
+	week := time.Now().Weekday().String()
+	loc, _ := time.LoadLocation("Asia/Shanghai")
+	t := time.Date(year, month, day, 0, 0, 1, 0, loc)
+	if week == "Friday" || week == "Saturday" {
+		return t.Unix()/int64(secondsPerWeek) - 1
+	}
+	return t.Unix() / int64(secondsPerWeek)
+}
+
 func GetSinceMonth() int64{
     var index int
     year := time.Now().Year()
