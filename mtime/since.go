@@ -28,6 +28,18 @@ func GetSinceDay() int64{
 	return t.Unix()/int64(secondsPerDay)
 }
 
+func GetOncallSinceDay() int64{
+	
+     year := time.Now().Year()
+     month := time.Now().Month()
+     day := time.Now().Day()
+
+    loc, _ := time.LoadLocation("Asia/Shanghai")
+	t := time.Date(year,month,day,0,1,0,0,loc)
+
+	return t.Unix()/int64(secondsPerDay)
+}
+
 func GetSinceWeek() int64{
 	
     year := time.Now().Year()
